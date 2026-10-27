@@ -1,0 +1,23 @@
+# Separate repo: business plans, Kickstarter/Patreon strategy, app code
+/The Future Farmer Card Game/
+
+# Internal working files, not part of the site
+/field-notes-content-plan.md
+/generate_exercise_sheets.py
+/pages/project-dashboard.html
+.fuse_hidden*
+
+# Raw grove media (originals live on OneDrive); only the web gallery images are published
+/images/grove-gallery/*
+!/images/grove-gallery/grove-*.jpg
+*.MOV
+*.mov
+*.MP4
+*.mp4
+*.HEIC
+*.heic
+
+# OS / editor clutter
+Thumbs.db
+desktop.ini
+.DS_Store
