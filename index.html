@@ -784,35 +784,89 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
   .sc-f2{width:150px}
 }
 </style>
+<style>
+/* ── ONE-PAGE: hero actions ── */
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin:1.75rem 0 1.25rem}
+
+/* ── ONE-PAGE: pre-order ── */
+.po{background:var(--parch);padding:6rem 0}
+.po-hd{max-width:640px;margin-bottom:2.5rem}
+.po-intro{font-family:var(--fs);font-style:italic;font-size:1rem;color:var(--inks);line-height:1.7;margin-top:1rem}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2.5rem}
+.tier-card{position:relative;display:block;cursor:pointer;background:var(--wh);
+  border:2px solid rgba(30,58,40,.12);border-radius:12px;padding:1.75rem 1.5rem 1.5rem;
+  transition:border-color .2s,box-shadow .2s,transform .2s}
+.tier-card:hover{border-color:rgba(200,114,72,.45)}
+.tier-card input{position:absolute;opacity:0;pointer-events:none}
+.tier-card:has(input:checked){border-color:var(--fg);box-shadow:0 16px 40px rgba(30,58,40,.14);transform:translateY(-3px)}
+.tier-card:has(input:focus-visible){outline:2px solid var(--terra);outline-offset:3px}
+.tier-ribbon{position:absolute;top:-11px;left:1.5rem;background:var(--terra);color:var(--wh);
+  font-family:var(--fh);font-weight:900;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.25rem .7rem;border-radius:20px}
+.tier-nm{font-family:var(--fh);font-weight:900;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.tier-price{font-family:var(--fh);font-weight:900;font-size:2.6rem;line-height:1;color:var(--fg);margin:.6rem 0 .35rem}
+.tier-price small{font-size:1.1rem;opacity:.6;margin-right:.1rem}
+.tier-sub{font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.7}
+.tier-feat{list-style:none;margin-top:1rem;font-size:.86rem;color:var(--inks)}
+.tier-feat li{padding:.35rem 0 .35rem 1.3rem;position:relative;border-top:1px dashed rgba(30,58,40,.1)}
+.tier-feat li:first-child{border-top:0}
+.tier-feat li::before{content:"\2713";position:absolute;left:0;color:var(--terra);font-weight:900}
+.po-box{display:grid;grid-template-columns:1fr 1.3fr;border-radius:12px;overflow:hidden;
+  box-shadow:0 16px 48px rgba(30,58,40,.1);border:1px solid rgba(30,58,40,.08)}
+.po-sum{background:var(--fg);color:var(--cream);padding:2rem}
+.po-sum .sec-lbl{color:var(--terra2)}
+.po-sum h3{font-family:var(--fh);font-weight:900;font-size:1.3rem;text-transform:uppercase;letter-spacing:.03em;margin:.4rem 0 1.25rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;
+  border-top:1px solid rgba(245,228,208,.14);font-size:.92rem}
+.sum-total{font-weight:800;font-size:1.05rem;border-top:2px solid rgba(245,228,208,.3)}
+.qty{display:flex;align-items:center;gap:.8rem}
+.qty button{width:30px;height:30px;border-radius:50%;border:0;background:var(--terra);color:var(--wh);
+  font-size:1rem;cursor:pointer;line-height:1}
+.qty button:hover{background:var(--terra2)}
+.qty span{min-width:1.5rem;text-align:center;font-weight:800}
+.sum-note{display:flex;gap:.6rem;margin-top:1rem;font-size:.82rem;color:rgba(245,228,208,.75);line-height:1.45}
+.sum-note::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--terra);flex-shrink:0;margin-top:.45rem}
+.po-form{background:var(--wh);padding:2rem}
+.po-form h3{font-family:var(--fh);font-weight:900;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.po-form>p{font-family:var(--fs);font-style:italic;font-size:.85rem;color:var(--inks);opacity:.7;margin:.3rem 0 1.25rem}
+.po-form .fm-input{margin-bottom:.85rem}
+.po-consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.8rem;color:var(--inks);line-height:1.5;margin:.25rem 0 1rem}
+.po-consent input{margin-top:.2rem;accent-color:var(--fg)}
+.po-consent a{color:var(--fg)}
+.po-form .btn{width:100%;text-align:center}
+.po-msg{display:none;margin-top:1rem;padding:1rem 1.1rem;border-radius:var(--r);font-size:.88rem;line-height:1.55}
+.po-msg.ok{display:block;background:rgba(30,58,40,.07);color:var(--fg)}
+.po-msg.err{display:block;background:var(--tp);color:#8a3d18}
+.po-tree{margin-top:1.75rem;text-align:center;font-family:var(--fs);font-style:italic;color:var(--inks)}
+
+.sticky.hide{display:none!important}
+
+/* ── ONE-PAGE: footer ── */
+.ft-col a{display:block}
+@media(max-width:1024px){.tier-grid{grid-template-columns:1fr}.po-box{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .po{padding:4rem 0}
+  .ft-grid > *:not(:first-child){display:block}
+  .nav-links.open a{display:block;padding:.4rem 0}
+}
+@media(max-width:600px){
+  nav .nav-cta{display:none}
+  .nav-logo{font-size:.74rem}
+  nav{padding:0 1rem}
+}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
-  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <a href="#top" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="pages/the-game.html">The Game</a></li>
-    <li><a href="pages/for-schools.html">For Schools</a></li>
-    <li class="nav-dropdown">
-      <a>Our Impact</a>
-      <div class="nav-dropdown-menu">
-        <a href="pages/the-grove.html">The Grove</a>
-        <a href="pages/the-forest-wall.html">The Forest Wall</a>
-        <a href="pages/future-farm-fund.html">The Future Farm Fund</a>
-      </div>
-    </li>
-    <li class="nav-dropdown">
-      <a>Community</a>
-      <div class="nav-dropdown-menu">
-        <a href="pages/card-creators.html">Card Creators</a>
-        <a href="pages/expansions.html">Expansions</a>
-        <a href="pages/blog.html">Field Notes</a>
-      </div>
-    </li>
-    <li><a href="pages/about.html">About</a></li>
-    <li><a href="pages/shop.html">Shop</a></li>
+    <li><a href="#story" data-k="nav_game">The Game</a></li>
+    <li><a href="#how" data-k="nav_how">How to Play</a></li>
+    <li><a href="#cards" data-k="nav_cards">Cards</a></li>
+    <li><a href="#faq" data-k="nav_faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-sw">
@@ -820,21 +874,9 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
       <button class="lb" onclick="L('pt')">PT</button>
       <button class="lb" onclick="L('es')">ES</button>
     </div>
-    <a href="pages/shop.html" class="nav-cta" data-k="nav_cta">Shop</a>
+    <a href="#preorder" class="nav-cta" data-k="nav_cta">Pre-Order</a>
   </div>
 </nav>
-
-
-<!-- KICKSTARTER BANNER -->
-<div class="ks-banner">
-  <div class="ks-inner">
-    <div class="ks-left">
-      <span class="ks-logo">Kickstarter</span>
-      <span class="ks-text"><strong data-k="ks_live">Campaign live now!</strong> <span data-k="ks_sub">Back The Future Farmer on Kickstarter and get your copy at the early bird price.</span></span>
-    </div>
-    <a href="https://www.kickstarter.com" target="_blank" rel="noopener" class="ks-btn" data-k="ks_btn">Support on Kickstarter &rarr;</a>
-  </div>
-</div>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -849,23 +891,13 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
       </h1>
       <p class="hero-desc" data-k="hero_tag">Build your farm. Generate ecosystem credits. Survive droughts, wildfires, and rivals. Grow the farm of tomorrow.</p>
 
-      <!-- HERO FORM — single email field, frictionless -->
-      <div class="hero-success" id="hero-success">
-        <strong>&#127807; <span data-k="ok_t">You're on the list!</span></strong>
-        <p data-k="ok_b_hero">We'll be in touch when pre-orders open. Help spread the word:</p>
-        <div class="share-row">
-          <a class="share-btn share-tw" href="#" onclick="shareTw();return false;">&#128038; Twitter/X</a>
-          <a class="share-btn share-wa" href="#" onclick="shareWa();return false;">&#128240; WhatsApp</a>
-          <button class="share-btn share-cp" onclick="copyLink()">&#128279; <span class="cp-lbl">Copy link</span></button>
-        </div>
-      </div>
-      <div class="hero-form" id="hero-form">
-        <input type="email" id="h-email" placeholder="your@email.com" data-k-ph="ph_email">
-        <button onclick="HFS()" data-k="hero_form_btn">Get Early Access</button>
+      <div class="hero-actions">
+        <a href="#preorder" class="btn btn-am" data-k="hero_cta1">Reserve Your Copy</a>
+        <a href="#how" class="btn btn-o" data-k="hero_cta2">How to Play</a>
       </div>
       <div class="hero-proof">
         <span class="proof-dot"></span>
-        <span id="proof-count" data-k="hero_proof">Kickstarter Early Bird: get your copy for &euro;15</span>
+        <span data-k="hero_proof">Launch price &euro;15 &middot; No payment today</span>
       </div>
       <a href="#story" class="hero-scroll-link">
         <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><rect x=".75" y=".75" width="12.5" height="16.5" rx="6.25" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="5.5" r="1.75" fill="currentColor"/></svg>
@@ -882,20 +914,6 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
     </div>
   </div>
 </section>
-
-<!-- EARLY BIRD STRIP -->
-<div class="earlybird">
-  <div class="earlybird-inner">
-    <div class="earlybird-left">
-      <span class="earlybird-badge">&#9889; Early Bird</span>
-      <span class="earlybird-text"><strong data-k="fb_title">Early Bird Price</strong> <span data-k="fb_sub">Get The Future Farmer for &euro;15 on Kickstarter. Limited spots.</span></span>
-    </div>
-    <div class="earlybird-progress">
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-      <span class="progress-label" data-k="fb_progress">155 / 500 reserved</span>
-    </div>
-  </div>
-</div>
 
 <!-- STORY -->
 <section class="story" id="story">
@@ -973,7 +991,7 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
           <p class="ct-body" data-k="ct2_b">A farmer&rsquo;s most powerful tools. Protect your farm, unlock strategies, or block incoming Challenges at the perfect moment.</p>
         </div>
         <div class="ct-foot">
-          <div class="ct-count">22 cards &middot; Power &amp; Protection</div>
+          <div class="ct-count">20 cards &middot; Power &amp; Protection</div>
           <div class="ct-tags"><span class="ctag">Irrigation</span><span class="ctag">No Tillage</span><span class="ctag">Cover Crops</span><span class="ctag">Insurance</span><span class="ctag">GMOs</span><span class="ctag">Precision Farming</span></div>
         </div>
       </div>
@@ -1002,63 +1020,106 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
   </div></div>
 </div>
 
-<!-- SPLIT: who it's for + sustainability -->
-<div class="split">
-  <div class="sp sp-b">
-    <span class="sp-icon">&#127942;</span>
-    <span class="sp-lbl-b" data-k="for_lbl">Who It&rsquo;s For</span>
-    <h2 class="sp-title" data-k="for_title">Games Night.<br>Classroom. World.</h2>
-    <ul class="for-list">
-      <li data-k="for1">Families and friends who want a strategic game night</li>
-      <li data-k="for2">Teachers covering sustainability and land use</li>
-      <li data-k="for3">Anyone curious about how food systems really work</li>
-      <li data-k="for4">People who want games that mean something</li>
-    </ul>
-    <a href="pages/shop.html" class="btn btn-am">Get the Game</a>
-  </div>
-  <div class="sp sp-a">
-    <span class="sp-icon">&#127807;</span>
-    <span class="sp-lbl-a" data-k="su_lbl">Sustainability</span>
-    <h2 class="sp-title" data-k="su_t">Every Purchase<br>Plants a Tree</h2>
-    <p class="sp-body" data-k="su_b">Your support doesn&rsquo;t stop at the table. A portion of every sale goes directly towards planting native trees in restoration programmes around the world.</p>
-    <a href="pages/the-grove.html" class="btn btn-g">Join the Forest</a>
-    <a href="pages/future-farm-fund.html" class="learn-more-btn" data-k="su_learn">Learn how we spend your money &rarr;</a>
-  </div>
-</div>
-
-
-<!-- CRE
-<div class="creator">
-  <div class="creator-in">
-    <span class="creator-lbl" data-k="creator_lbl">Behind the Game</span>
-    <p class="creator-text" data-k="creator_text">&ldquo;I made The Future Farmer Card Game out of a love for nature and forests, years working in rural development, and a personal project to restore a small piece of land. I wanted a game that brought those worlds together &mdash; something fun to play with family and friends, but rooted in the real choices that farmers and land stewards face every day.&rdquo;</p>
-    <span class="creator-sig">Marcelo Rezende, Creator</span>
-  </div>
-</div>
-
-<!-- LANG NOTICE -->
-<div class="ln">
-  <div class="ln-in">
-    <h2 data-k="ln_t">Help Us Speak Your Language</h2>
-    <p data-k="ln_b">The Future Farmer is currently only available in English. We want to bring it to classrooms and families everywhere &mdash; but translations cost time and money. Back us on Kickstarter to help fund the next language.</p>
-    <div class="chips">
-      <span class="chip on">&#127468;&#127463; English</span>
-      <span class="chip">&#127466;&#127480; Espa&ntilde;ol</span>
-      <span class="chip">&#127467;&#127479; Fran&ccedil;ais</span>
-      <span class="chip">&#127477;&#127481; Portugu&ecirc;s</span>
-      <span class="chip">&#127465;&#127466; Deutsch</span>
-      <span class="chip">&#127464;&#127475; &#20013;&#25991;</span>
-      <span class="chip" data-k="ln_more">+ More</span>
+<!-- PRE-ORDER -->
+<section class="po" id="preorder">
+  <div class="po-in">
+    <div class="po-hd">
+      <span class="sec-lbl sec-lbl-am" data-k="po_lbl">Pre-Order</span>
+      <h2 class="sec-title dk" data-k="po_title">Be the First to<br>Grow the Future</h2>
+      <p class="po-intro" data-k="po_intro">Reserve your copy at the launch price. Nothing is charged today: when sales open, we&rsquo;ll email you a secure checkout link with your reservation ready.</p>
     </div>
-    <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem">
-      <a href="pages/shop.html" class="btn btn-g" style="font-size:.75rem;padding:.6rem 1.4rem">Support on Kickstarter &rarr;</a>
-      <a href="pages/shop.html" class="btn btn-o" style="font-size:.75rem;padding:.6rem 1.4rem">Pre-order Now</a>
+
+    <div class="tier-grid" role="radiogroup" aria-label="Choose a pack">
+      <label class="tier-card">
+        <input type="radio" name="tier" value="deck" checked>
+        <span class="tier-ribbon" data-k="t_pop">Most popular</span>
+        <div class="tier-nm" data-k="t1_nm">Single Deck</div>
+        <div class="tier-price"><small>&euro;</small>15</div>
+        <div class="tier-sub" data-k="t1_sub">Launch price</div>
+        <ul class="tier-feat">
+          <li data-k="t1_f1">The complete card deck</li>
+          <li data-k="t1_f2">Illustrated rulebook</li>
+          <li data-k="t1_f3">Tuck box</li>
+        </ul>
+      </label>
+      <label class="tier-card">
+        <input type="radio" name="tier" value="duo">
+        <div class="tier-nm" data-k="t2_nm">Family Duo</div>
+        <div class="tier-price"><small>&euro;</small>27</div>
+        <div class="tier-sub" data-k="t2_sub">2 decks &middot; save &euro;3</div>
+        <ul class="tier-feat">
+          <li data-k="t2_f1">2 complete decks</li>
+          <li data-k="t2_f2">2 illustrated rulebooks</li>
+          <li data-k="t2_f3">Bonus promo cards</li>
+        </ul>
+      </label>
+      <label class="tier-card">
+        <input type="radio" name="tier" value="school">
+        <div class="tier-nm" data-k="t3_nm">School Pack</div>
+        <div class="tier-price"><small>&euro;</small>99</div>
+        <div class="tier-sub" data-k="t3_sub">8 decks &middot; save &euro;21</div>
+        <ul class="tier-feat">
+          <li data-k="t3_f1">8 decks, classroom-ready</li>
+          <li data-k="t3_f2">Teacher&rsquo;s guide</li>
+          <li data-k="t3_f3">Classroom exercises</li>
+        </ul>
+      </label>
     </div>
+
+    <div class="po-box">
+      <div class="po-sum">
+        <span class="sec-lbl" data-k="sum_lbl">Your reservation</span>
+        <h3 id="sum-name">Single Deck</h3>
+        <div class="sum-row"><span data-k="sum_qty">Quantity</span>
+          <div class="qty">
+            <button type="button" onclick="changeQty(-1)" aria-label="Decrease">&minus;</button>
+            <span id="sum-qty">1</span>
+            <button type="button" onclick="changeQty(1)" aria-label="Increase">+</button>
+          </div>
+        </div>
+        <div class="sum-row"><span data-k="sum_unit">Unit price</span><span id="sum-unit">&euro;15</span></div>
+        <div class="sum-row sum-total"><span data-k="sum_total">Total at launch</span><span id="sum-total">&euro;15</span></div>
+        <p class="sum-note" data-k="sum_n1">No payment today. Cancel any time.</p>
+        <p class="sum-note" data-k="sum_n2">Shipping is calculated at checkout.</p>
+      </div>
+
+      <form class="po-form" id="po-form" novalidate>
+        <h3 data-k="fm_t">Reserve Your Copy</h3>
+        <p data-k="fm_s">We&rsquo;ll email you when sales open.</p>
+        <div class="fm-input">
+          <label for="po-name" data-k="fm_nm">Your name</label>
+          <input type="text" id="po-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="fm-input">
+          <label for="po-email" data-k="fm_em">Email address</label>
+          <input type="email" id="po-email" name="email" autocomplete="email" required placeholder="your@email.com" data-k-ph="ph_email">
+        </div>
+        <div class="fm-input">
+          <label for="po-country" data-k="fm_co">Country</label>
+          <select id="po-country" name="country" autocomplete="country-name" required>
+            <option value="" data-k="co_sel">Select a country&hellip;</option>
+            <option>Portugal</option><option>Spain</option><option>France</option><option>Germany</option>
+            <option>Italy</option><option>Netherlands</option><option>Belgium</option><option>Ireland</option>
+            <option>United Kingdom</option><option>United States</option><option>Canada</option><option>Brazil</option>
+            <option value="Other (EU)" data-k="co_oeu">Other (EU)</option>
+            <option value="Other" data-k="co_oth">Other</option>
+          </select>
+        </div>
+        <label class="po-consent">
+          <input type="checkbox" id="po-consent" required>
+          <span data-k="fm_consent">I agree to receive emails about my reservation and the game&rsquo;s launch. Unsubscribe any time. See our <a href="#" data-privacy>Privacy Policy</a>.</span>
+        </label>
+        <button type="submit" class="btn btn-am" data-k="fm_sub">Reserve My Copy &rarr;</button>
+        <div class="po-msg" id="po-msg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <p class="po-tree" data-k="po_tree">&#127795; Every copy sold plants a native tree.</p>
   </div>
-</div>
+</section>
 
 <!-- FAQ -->
-<section class="faq">
+<section class="faq" id="faq">
   <div class="faq-in">
     <div class="faq-hd">
       <span class="sec-lbl sec-lbl-r" data-k="fq_lbl">Questions</span>
@@ -1068,73 +1129,47 @@ footer{background:var(--fg);color:var(--cream);padding:4rem 0 2rem}
       <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q1q">How many players can play?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q1a">2 to 6 players. With 2 it&rsquo;s a tactical head-to-head duel. With 4 or more it gets chaotic, alliances shift, and Challenges fly across the table. Most games settle around 3&ndash;4 players as the sweet spot.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q2q">How long does a game take?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q2a">About 30&ndash;45 minutes for a standard game to 15 PES credits. You can shorten it to 10 PES for a quick round, or raise it to 20 for a longer session. Teachers often run 30-minute rounds that fit neatly into a class period.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q3q">Is it suitable for schools?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q3a">Absolutely. The game was designed by a practicing forester and every card &mdash; from Agroforestry to Flash Floods &mdash; reflects real ecological dynamics. It maps to geography, environmental science, and biology curricula for ages 10 and up. Teacher guides with lesson plans, discussion prompts, and assessment rubrics are included with school packages.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q4q">When will it ship?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q4a">Shipping begins after Kickstarter fulfilment. Pre-order customers are first in the queue and will receive tracking by email. We&rsquo;ll keep you updated at every stage &mdash; production, printing, and dispatch.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q4q">When will it ship?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q4a">We&rsquo;ll announce the shipping date to everyone who reserved, and you&rsquo;ll receive tracking by email. People on the reservation list are first in the queue.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q5q">Do you ship worldwide?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q5a">Yes. We ship to Europe, the UK, North America, and beyond. Shipping within the EU is included in the price. For other regions, shipping costs are calculated at checkout based on your location.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q6q">How does the tree planting work?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q6a">10% of every sale goes to The Grove &mdash; a real 10-hectare restoration site on a degraded dryland slope. Every November, native trees are planted, photographed, and documented. The site is already home to over 210 species. Kickstarter backers at Grove tier and above receive a named tree with annual species reports, survival data, and photos.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q7q">What are PES credits?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q7a">PES stands for Payment for Ecosystem Services &mdash; a real-world mechanism where landowners are compensated for the environmental benefits their land provides, such as carbon storage, water filtration, or biodiversity. In the game, PES credits are your score: the more resilient and ecologically valuable your farm, the more credits you earn.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q8q">What&rsquo;s in the box?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q8a">53 unique cards across three types: 18 Farm Modules (your farm and production), 21 Innovations (tools and strategies), and 14 Challenges (droughts, pests, recessions). Plus an illustrated rulebook and a tuck-box. Every card features real science, witty flavour text, and beautiful artwork.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q9q">Is it available in other languages?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q9a">Currently the game is only available in English. Portuguese, Spanish, French, German, and Chinese translations are planned, but they depend on funding. Back us on Kickstarter to help make the next language happen.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q10q">What is The Forest Wall?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q10a">The Forest Wall is our permanent record of everyone who helped build this project. Every Kickstarter backer is listed as a Founding Backer. Kickstarter backers at The Grove tier and above have their name printed in every future edition of the game. Card Creators &mdash; those whose card ideas pass community vote and scientific review &mdash; earn the highest honour: their name and card in the game forever.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q11q">Can I suggest a card?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q11a">Yes! All backers can submit card ideas. Each quarter, the top submissions are shortlisted and put to a community vote. Winning cards are reviewed for scientific accuracy and game balance by the forester behind the game. If your card makes it in, you become a Card Creator &mdash; your name is on The Forest Wall and in every copy printed.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q12q">Do I pay anything now when I pre-order?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q12a">No. Pre-ordering reserves your copy at launch pricing with no payment taken now. You&rsquo;ll receive a secure checkout link the day our Kickstarter goes live, with your tier and early-bird savings already applied. You can cancel anytime before then.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q8q">What&rsquo;s in the box?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q8a">60 cards, 52 unique designs, across three types: 18 Farm Modules (your farm and production; 8 of them come in pairs), 20 Innovations (tools and strategies), and 14 Challenges (droughts, pests, recessions). Plus an illustrated rulebook and a tuck-box. Every card features real science, witty flavour text, and beautiful artwork.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q9q">Is it available in other languages?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q9a">The game is currently available in English. Portuguese, Spanish and other translations are planned.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="TF(this)"><span data-k="q12q">Do I pay anything now when I pre-order?</span><em class="faq-arr">&#9654;</em></button><div class="faq-a" data-k="q12a">No. Reserving holds your copy at the launch price with no payment taken. When sales open, we&rsquo;ll email you a secure checkout link. You can cancel any time before then.</div></div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="ft-in">
-    <div class="ft-top">
-      <div class="ft-brand" style="display:flex;gap:1.2rem;align-items:flex-start">
-        <img src="img/card-back.jpg" alt="" style="width:48px;border-radius:4px;opacity:.6;flex-shrink:0;margin-top:.15rem">
-        <div>
-        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
-        <p data-k="ft_tag">A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
-        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
-        </div>
-      </div>
-      <div class="ft-col">
-        <h4 data-k="ft_nav">The Game</h4>
-        <ul>
-          <li><a href="pages/the-game.html">About the Game</a></li>
-          <li><a href="pages/for-schools.html">For Schools</a></li>
-          <li><a href="pages/expansions.html">Expansions</a></li>
-          <li><a href="pages/shop.html">Shop</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Our Impact</h4>
-        <ul>
-          <li><a href="pages/the-grove.html">The Grove</a></li>
-          <li><a href="pages/the-forest-wall.html">The Forest Wall</a></li>
-          <li><a href="pages/future-farm-fund.html">The Future Farm Fund</a></li>
-          <li><a href="pages/card-creators.html">Card Creators</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Info</h4>
-        <ul>
-          <li><a href="pages/about.html">About</a></li>
-          <li><a href="pages/blog.html">Field Notes</a></li>
-          <li><a href="#" data-k="ft_priv">Privacy Policy</a></li>
-          <li><a href="#" data-k="ft_con">Contact</a></li>
-        </ul>
-      </div>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+      <p class="ft-tag" data-k="ft_tag">A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
     </div>
-    <div class="ft-bot">
-      <span>The Future Farmer Card Game</span>
-      <span>&#127807; <span data-k="ft_tree">Your purchase supports native tree planting</span></span>
+    <div class="ft-col">
+      <div class="ft-col-title" data-k="ft_nav">The Game</div>
+      <a href="#story" data-k="nav_game">The Game</a>
+      <a href="#how" data-k="nav_how">How to Play</a>
+      <a href="#cards" data-k="nav_cards">Cards</a>
+      <a href="#preorder" data-k="nav_cta">Pre-Order</a>
     </div>
+    <div class="ft-col">
+      <div class="ft-col-title" data-k="ft_inf">Info</div>
+      <a href="#faq" data-k="nav_faq">FAQ</a>
+      <a href="#" data-privacy data-k="ft_priv">Privacy Policy</a>
+      <a href="#" data-contact data-k="ft_con">Contact</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">&copy; Marcelo Rezende. All rights reserved.</span>
+    <span class="ft-tree" data-k="ft_tree">&#127807; Every copy plants a native tree</span>
   </div>
 </footer>
 
 <!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" id="sticky-cta">
-  <div class="sticky-cta-row">
-    <input type="email" id="s-email" placeholder="your@email.com">
-    <button onclick="SFS()" data-k="hero_form_btn">Get Early Access</button>
-  </div>
-  <div class="sticky-note" data-k="sticky_note">No payment now &middot; First 500 copies at &euro;15</div>
+<div class="sticky" id="sticky-cta">
+  <span class="sticky-note" data-k="sticky_note">Launch price &euro;15 &middot; No payment today</span>
+  <a href="#preorder" class="nav-cta" data-k="nav_cta">Pre-Order</a>
 </div>
 
 <script>
@@ -1146,6 +1181,95 @@ pt:{nav_about:"Sobre",nav_cards:"Cartas",nav_how:"Como Jogar",nav_preorder:"Pr\u
 es:{nav_about:"Sobre el juego",nav_cards:"Cartas",nav_how:"C\u00f3mo Jugar",nav_preorder:"Preventa",nav_cta:"Preventa",hero_stamp:"Dise\u00f1ado en la UE",hero_tag:"Construye tu granja. Genera cr\u00e9ditos de ecosistema. Sobrevive sequ\u00edas, incendios y rivales. Cultiva la granja del ma\u00f1ana.",hero_cta1:"Reservar Ahora",hero_cta2:"C\u00f3mo Jugar",s_cards:"Cartas",s_players:"Jugadores",s_time:"Duraci\u00f3n",s_age:"Edad",ab_lbl:"Sobre el Juego",ab_title:"Un Juego Competitivo<br>Con un Mensaje Real",ab_b1:"El Futuro Agricultor Card Game es un juego estrat\u00e9gico donde los jugadores construyen granjas resilientes que generan <strong>cr\u00e9ditos de servicios ecosist\u00e9micos (PES)</strong>: la moneda que gana el juego.",ab_b2:"En el camino, enfrentar\u00e1s sequ\u00edas, plagas y recesiones econ\u00f3micas mientras aprovechas la agroforestar\u00eda, bosques alimentarios e innovaciones de vanguardia. Divertido, r\u00e1pido y sorprendentemente educativo.",ab_b3:"El juego est\u00e1 inspirado en agricultores reales de todo el mundo que intentan marcar la diferencia: personas que eligen la agroforestar\u00eda frente al monocultivo, que plantan \u00e1rboles en lugar de quemarlos, y que demuestran cada d\u00eda que la resiliencia y la productividad pueden ir de la mano.",ab_pq:"Divertido, Inspirador, Estrat\u00e9gico.",s_types:"Tipos de cartas",s_win:"PES para ganar",ct_lbl:"Qu\u00e9 Hay en la Baraja",ct_title:"Tres Tipos de Cartas",ct_sub:"Cada carta tiene un papel. Gestiona tu tierra, supera a tus rivales y prep\u00e1rate para lo inesperado.",ct1_lbl:"M\u00f3dulos de Granja",ct1_nm:"Construye Tu Tierra",ct1_b:"Son las actividades que implementas en tu granja. Cada una genera cr\u00e9ditos PES. Cuanto m\u00e1s diversa y resiliente sea tu granja, m\u00e1s ganas.",ct2_lbl:"Innovaciones",ct2_nm:"Pot\u00e9nciate",ct2_b:"Las herramientas m\u00e1s poderosas del agricultor. Protege tu tierra, desbloquea nuevas estrategias, esp\u00eda a los oponentes o bloquea Desaf\u00edos en el momento justo.",ct3_lbl:"Desaf\u00edos",ct3_nm:"Agita las Cosas",ct3_b:"El entorno es impredecible. Los Desaf\u00edos crean efectos \u00fanicos que pueden devastar las granjas de los oponentes o de todos. \u00dasalos estrat\u00e9gicamente.",hw_lbl:"C\u00f3mo Jugar",hw_title:"De la Semilla<br>a la Victoria",s1h:"Reparte las Cartas Iniciales",s1p:"Cada jugador roba 5 cartas al inicio. La baraja se coloca boca abajo en el centro de la mesa.",s2h:"Realiza Tu Turno",s2p:"Roba 1 carta y juega 1 carta: un M\u00f3dulo de Granja para ganar cr\u00e9ditos, una Innovaci\u00f3n para potenciarte, o un Desaf\u00edo para perturbar a los oponentes.",s3h:"Gestiona Tu Mano",s3p:"Tu mano debe terminar siempre con exactamente 5 cartas. Descarta el exceso antes de que acabe tu turno.",s4h:"Sobrevive los Desaf\u00edos",s4p:"Los oponentes pueden lanzarte incendios, inundaciones y recesiones. Protege tu granja con Innovaciones inteligentes.",s5h:"El Primero en 15 Cr\u00e9ditos PES Gana",s5p:"Construye una granja diversa y resiliente que genere cr\u00e9ditos m\u00e1s r\u00e1pido que tus rivales.",ref_hd:"Referencia R\u00e1pida",r1:"Roba 1 carta, juega 1 carta por turno",r2:"La mano siempre debe tener 5 cartas al final del turno",r3:"Los M\u00f3dulos de Granja generan cr\u00e9ditos PES pasivamente",r4:"Las Innovaciones quedan en juego o se activan al instante",r5:"Los Desaf\u00edos pueden afectar a oponentes o a todos",r6:"Si se acaba la baraja, baraja la pila de descarte",r7:"El Seguro bloquea cualquier Desaf\u00edo entrante",win_t:"C\u00f3mo Ganar",win_b:"Alcanza <strong>15 cr\u00e9ditos PES</strong> primero. Ajusta el objetivo para cambiar la duraci\u00f3n.",su_t:"Cada Compra Planta un \u00c1rbol",su_b:"Tu apoyo va m\u00e1s all\u00e1 de la mesa de juego. Parte de cada venta se destina directamente a plantar \u00e1rboles nativos en programas de restauraci\u00f3n en todo el mundo.",su_cta:"N\u00fanete al Movimiento",po_lbl:"Preventa",po_title:"S\u00e9 el Primero en<br>Cultivar el Futuro",po_early:"Precio para primeros seguidores",po_after:"tras el lanzamiento",pi1:"60 cartas premium",pi2:"Libro de reglas en color incluido",pi3:"Dise\u00f1ado e impreso en la UE",pi4:"Env\u00edo gratuito en Europa",pi5:"Tu nombre en los cr\u00e9ditos del juego",pi6:"Apoya la plantaci\u00f3n de \u00e1rboles nativos",po_note:"No se realizar\u00e1 ning\u00fan pago ahora. Te enviaremos un correo cuando la preventa abra oficialmente.",fm_t:"Reserva Tu Copia",fm_s:"N\u00fanete a la lista de espera. Te enviaremos el enlace de pago cuando la preventa abra.",fm_nm:"Tu Nombre",fm_em:"Correo Electr\u00f3nico",fm_qty:"Cantidad",fm_co:"Pa\u00eds",q1:"1 copia",q2:"2 copias",q3:"3 copias",q4:"4+ copias (consulta por volumen)",co_sel:"Selecciona pa\u00eds\u2026",fm_sub:"Reservar Mi Copia \u2192",fn1:"Sin pago ahora. Lee nuestra",fn2:"pol\u00edtica de privacidad",ok_t:"\u00a1Est\u00e1s en la lista!",ok_b:"Te enviaremos un correo de confirmaci\u00f3n en breve. Gracias por apoyar la educaci\u00f3n agr\u00edcola sostenible.",ln_t:"M\u00e1s Idiomas Pr\u00f3ximamente",ln_b:"Actualmente disponible solo en ingl\u00e9s. El portugu\u00e9s, espa\u00f1ol y m\u00e1s traducciones est\u00e1n en camino.",ln_more:"+ M\u00e1s",fq_lbl:"Preguntas",fq_t:"Preguntas Frecuentes",q1q:"\u00bfCu\u00e1ntos jugadores pueden jugar?",q1a:"El Futuro Agricultor Card Game funciona mejor con 2 a 6 jugadores. Con 2 es un duelo; con m\u00e1s se vuelve ca\u00f3tico e hilarante.",q2q:"\u00bfCu\u00e1nto dura una partida?",q2a:"Una partida est\u00e1ndar a 15 cr\u00e9ditos PES dura unos 30 a 45 minutos. Ajusta el objetivo de cr\u00e9ditos para controlar la duraci\u00f3n.",q3q:"\u00bfEs educativo?",q3a:"Mucho. Cada carta corresponde a una pr\u00e1ctica real de agricultura o gesti\u00f3n de la tierra, desde la agroforestar\u00eda hasta el pago por servicios ecosist\u00e9micos (PES).",q4q:"\u00bfCu\u00e1ndo se enviar\u00e1?",q4a:"Estamos finalizando la producci\u00f3n. Los clientes de preventa ser\u00e1n los primeros en saberlo y recibirlo.",q5q:"\u00bfEnv\u00edan fuera de Europa?",q5a:"S\u00ed. El env\u00edo es gratuito dentro de Europa. Para otras regiones, los costos de env\u00edo se calcular\u00e1n al finalizar el pedido.",q6q:"\u00bfC\u00f3mo funciona la plantaci\u00f3n de \u00e1rboles?",q6a:"Parte de cada venta apoya la plantaci\u00f3n de \u00e1rboles nativos en programas de restauraci\u00f3n verificados.",ft_tag:"Un juego de cartas sobre agricultura resiliente. Dise\u00f1ado en la UE. Compartido con el Mundo.",ft_nav:"Navegaci\u00f3n",ft_inf:"Informaci\u00f3n",ft_priv:"Pol\u00edtica de Privacidad",ft_con:"Contacto",ft_tree:"Tu compra apoya la plantaci\u00f3n de \u00e1rboles nativos",hero_sub:"Construye. Crece. Altera. Gana.",hero_form_btn:"Acceso Anticipado",ph_email:"tu@email.com",hero_proof:"Kickstarter Early Bird: tu copia por \u20ac15",scroll_hint:"Descubre el juego",fb_title:"Precio Early Bird",fb_sub:"Consigue El Futuro Agricultor Card Game por \u20ac15 en Kickstarter. Plazas limitadas.",fb_progress:"Early Bird: \u20ac15",how_sub:"Cinco pasos simples. Infinitas estrategias.",su_lbl:"Sostenibilidad",for_lbl:"Para Qui\u00e9n Es",for_title:"Noche de Juegos.<br>Aula. Mundo.",for1:"Familias y amigos que buscan una noche de juegos estrat\u00e9gicos",for2:"Profesores que ense\u00f1an sostenibilidad y uso de la tierra",for3:"Cualquiera con curiosidad sobre c\u00f3mo funcionan los sistemas alimentarios",for4:"Personas que quieren juegos con significado",po_sub:"Ap\u00f3yanos en Kickstarter y aseg\u00fara el precio early bird de \u20ac15. Cantidad limitada.",ep1t:"Precio Early Bird",ep1b:"\u20ac15 en lugar de \u20ac29 (ahorra \u20ac14 frente al precio normal)",ep2t:"Tu Nombre en los Cr\u00e9ditos",ep2b:"Listado como apoiador fundador en el libro de reglas impreso",ep3t:"Actualizaciones del Lanzamiento",ep3b:"Sigue el viaje del juego desde la producci\u00f3n hasta tu puerta",price_badge:"Early Bird",fm_sub_v4:"Reclamar Precio Early Bird \u2192",ok_b_hero:"\u00a1Gracias por el apoyo! Te mantendremos al tanto de la campa\u00f1a. Comparte:",share_cta:"Ayuda a correr la voz",sticky_note:"Sin pago ahora \u00b7 500 copias a \u20ac15",creator_lbl:"Detr\u00e1s del Juego",creator_text:"\u201cHice El Futuro Agricultor Card Game impulsado por el amor a la naturaleza y los bosques, a\u00f1os de trabajo en desarrollo rural, y un proyecto personal para restaurar un peque\u00f1o pedazo de tierra. Quer\u00eda un juego que uniera esos mundos \u2014 divertido para jugar en familia y con amigos, pero arraigado en las decisiones reales que enfrentan agricultores y custodios de la tierra cada d\u00eda.\u201d",s_types:"Tipos de cartas",s_win:"PES para ganar",ks_live:"\u00a1Campa\u00f1a en vivo!",ks_sub:"Apoya El Futuro Agricultor en Kickstarter y recibe tu copia al precio early bird.",ks_btn:"Apoyar en Kickstarter",su_learn:"C\u00f3mo usamos tu dinero \u2192",modal_title:"C\u00f3mo Usamos Tu Dinero",modal_intro:"Cada \u20ac15 que gastas en El Futuro Agricultor se divide de forma transparente en tres \u00e1reas.",cost1_name:"Producci\u00f3n",cost1_desc:"Impresi\u00f3n de cartas, embalaje, control de calidad y env\u00edo a centros de distribuci\u00f3n. El mayor coste, que garantiza un producto f\u00edsico premium.",cost2_name:"Mantenimiento",cost2_desc:"Alojamiento del dominio, registro de c\u00f3digo de barras, tarifas de plataforma e-commerce, procesamiento de pagos y financiaci\u00f3n de nuevas versiones y traducciones.",cost3_name:"Plantaci\u00f3n de \u00c1rboles Nativos",cost3_desc:"Financia la plantaci\u00f3n de \u00e1rboles nativos a trav\u00e9s de programas de restauraci\u00f3n ecol\u00f3gica verificados. Cada copia vendida planta un \u00e1rbol.",modal_footer:"Creemos en la total transparencia. Si tienes preguntas sobre nuestra estructura de costes, cont\u00e1ctanos.",fm_t:"Reclamar Precio Early Bird",fm_s:"Ap\u00f3yanos en Kickstarter o \u00fanete a la lista de espera al precio de \u20ac15."}
 };
 
+// ── One-page copy (merged over the original strings above) ──
+Object.assign(T.en,{
+nav_game:"The Game",nav_how:"How to Play",nav_cards:"Cards",nav_faq:"FAQ",nav_cta:"Pre-Order",
+hero_cta1:"Reserve Your Copy",hero_cta2:"How to Play",hero_proof:"Launch price &euro;15 &middot; No payment today",
+po_lbl:"Pre-Order",po_title:"Be the First to<br>Grow the Future",
+po_intro:"Reserve your copy at the launch price. Nothing is charged today: when sales open, we&rsquo;ll email you a secure checkout link with your reservation ready.",
+t_pop:"Most popular",
+t1_nm:"Single Deck",t1_sub:"Launch price",t1_f1:"The complete card deck",t1_f2:"Illustrated rulebook",t1_f3:"Tuck box",
+t2_nm:"Family Duo",t2_sub:"2 decks &middot; save &euro;3",t2_f1:"2 complete decks",t2_f2:"2 illustrated rulebooks",t2_f3:"Bonus promo cards",
+t3_nm:"School Pack",t3_sub:"8 decks &middot; save &euro;21",t3_f1:"8 decks, classroom-ready",t3_f2:"Teacher&rsquo;s guide",t3_f3:"Classroom exercises",
+sum_lbl:"Your reservation",sum_qty:"Quantity",sum_unit:"Unit price",sum_total:"Total at launch",
+sum_n1:"No payment today. Cancel any time.",sum_n2:"Shipping is calculated at checkout.",
+fm_t:"Reserve Your Copy",fm_s:"We&rsquo;ll email you when sales open.",fm_nm:"Your name",fm_em:"Email address",fm_co:"Country",
+co_sel:"Select a country&hellip;",co_oeu:"Other (EU)",co_oth:"Other",
+fm_consent:"I agree to receive emails about my reservation and the game&rsquo;s launch. Unsubscribe any time. See our <a href=\"#\" data-privacy>Privacy Policy</a>.",
+fm_sub:"Reserve My Copy &rarr;",
+msg_ok:"<strong>You&rsquo;re on the list!</strong> Check your inbox to confirm your email. We&rsquo;ll write when sales open.",
+msg_err:"Something went wrong. Please try again in a moment.",
+msg_inv:"Please fill in your name, a valid email and your country, and tick the consent box.",
+po_tree:"&#127795; Every copy sold plants a native tree.",
+ft_nav:"The Game",ft_inf:"Info",ft_tree:"&#127807; Every copy plants a native tree",
+sticky_note:"Launch price &euro;15 &middot; No payment today",
+q4a:"We&rsquo;ll announce the shipping date to everyone who reserved, and you&rsquo;ll receive tracking by email. People on the reservation list are first in the queue.",
+q9a:"The game is currently available in English. Portuguese, Spanish and other translations are planned.",
+q12a:"No. Reserving holds your copy at the launch price with no payment taken. When sales open, we&rsquo;ll email you a secure checkout link. You can cancel any time before then."
+});
+Object.assign(T.pt,{
+nav_game:"O Jogo",nav_how:"Como Jogar",nav_cards:"Cartas",nav_faq:"Perguntas",nav_cta:"Pré-venda",
+hero_cta1:"Reservar a Minha Cópia",hero_cta2:"Como Jogar",hero_proof:"Preço de lançamento &euro;15 &middot; Sem pagamento hoje",
+po_lbl:"Pré-venda",po_title:"Seja o Primeiro a<br>Cultivar o Futuro",
+po_intro:"Reserve a sua cópia ao preço de lançamento. Nada é cobrado hoje: quando as vendas abrirem, enviamos-lhe por e-mail um link de pagamento seguro com a sua reserva pronta.",
+t_pop:"Mais popular",
+t1_nm:"Baralho Individual",t1_sub:"Preço de lançamento",t1_f1:"O baralho completo",t1_f2:"Livro de regras ilustrado",t1_f3:"Caixa",
+t2_nm:"Duo Familiar",t2_sub:"2 baralhos &middot; poupe &euro;3",t2_f1:"2 baralhos completos",t2_f2:"2 livros de regras ilustrados",t2_f3:"Cartas promocionais de oferta",
+t3_nm:"Pack Escola",t3_sub:"8 baralhos &middot; poupe &euro;21",t3_f1:"8 baralhos, prontos para a sala de aula",t3_f2:"Guia do professor",t3_f3:"Exercícios para a sala de aula",
+sum_lbl:"A sua reserva",sum_qty:"Quantidade",sum_unit:"Preço unitário",sum_total:"Total no lançamento",
+sum_n1:"Sem pagamento hoje. Cancele quando quiser.",sum_n2:"Os portes são calculados no pagamento.",
+fm_t:"Reservar a Minha Cópia",fm_s:"Enviamos-lhe um e-mail quando as vendas abrirem.",fm_nm:"O seu nome",fm_em:"Endereço de e-mail",fm_co:"País",
+co_sel:"Selecione o país&hellip;",co_oeu:"Outro (UE)",co_oth:"Outro",
+fm_consent:"Aceito receber e-mails sobre a minha reserva e o lançamento do jogo. Pode cancelar a qualquer momento. Consulte a nossa <a href=\"#\" data-privacy>Política de Privacidade</a>.",
+fm_sub:"Reservar &rarr;",
+msg_ok:"<strong>Está na lista!</strong> Verifique a sua caixa de correio para confirmar o e-mail. Escrevemos-lhe quando as vendas abrirem.",
+msg_err:"Algo correu mal. Tente novamente dentro de momentos.",
+msg_inv:"Preencha o nome, um e-mail válido e o país, e assinale a caixa de consentimento.",
+po_tree:"&#127795; Cada cópia vendida planta uma árvore nativa.",
+ft_nav:"O Jogo",ft_inf:"Informações",ft_tree:"&#127807; Cada cópia planta uma árvore nativa",
+sticky_note:"Preço de lançamento &euro;15 &middot; Sem pagamento hoje",
+q4a:"Vamos anunciar a data de envio a todos os que reservaram, e receberá o código de seguimento por e-mail. Quem está na lista de reservas é o primeiro a receber.",
+q9a:"O jogo está disponível em inglês. Estão planeadas traduções para português, espanhol e outras línguas.",
+q12a:"Não. A reserva guarda a sua cópia ao preço de lançamento, sem qualquer pagamento. Quando as vendas abrirem, enviamos-lhe um link de pagamento seguro. Pode cancelar a qualquer momento até lá."
+});
+Object.assign(T.es,{
+nav_game:"El Juego",nav_how:"Cómo Jugar",nav_cards:"Cartas",nav_faq:"Preguntas",nav_cta:"Preventa",
+hero_cta1:"Reservar Mi Copia",hero_cta2:"Cómo Jugar",hero_proof:"Precio de lanzamiento &euro;15 &middot; Sin pago hoy",
+po_lbl:"Preventa",po_title:"Sé el Primero en<br>Cultivar el Futuro",
+po_intro:"Reserva tu copia al precio de lanzamiento. Hoy no se cobra nada: cuando abran las ventas, te enviaremos por correo un enlace de pago seguro con tu reserva lista.",
+t_pop:"Más popular",
+t1_nm:"Baraja Individual",t1_sub:"Precio de lanzamiento",t1_f1:"La baraja completa",t1_f2:"Reglamento ilustrado",t1_f3:"Caja",
+t2_nm:"Dúo Familiar",t2_sub:"2 barajas &middot; ahorra &euro;3",t2_f1:"2 barajas completas",t2_f2:"2 reglamentos ilustrados",t2_f3:"Cartas promocionales de regalo",
+t3_nm:"Pack Escuela",t3_sub:"8 barajas &middot; ahorra &euro;21",t3_f1:"8 barajas, listas para el aula",t3_f2:"Guía del profesor",t3_f3:"Ejercicios para el aula",
+sum_lbl:"Tu reserva",sum_qty:"Cantidad",sum_unit:"Precio unitario",sum_total:"Total en el lanzamiento",
+sum_n1:"Sin pago hoy. Cancela cuando quieras.",sum_n2:"El envío se calcula al pagar.",
+fm_t:"Reservar Mi Copia",fm_s:"Te escribiremos cuando abran las ventas.",fm_nm:"Tu nombre",fm_em:"Correo electrónico",fm_co:"País",
+co_sel:"Selecciona el país&hellip;",co_oeu:"Otro (UE)",co_oth:"Otro",
+fm_consent:"Acepto recibir correos sobre mi reserva y el lanzamiento del juego. Puedo darme de baja cuando quiera. Consulta nuestra <a href=\"#\" data-privacy>Política de Privacidad</a>.",
+fm_sub:"Reservar &rarr;",
+msg_ok:"<strong>¡Estás en la lista!</strong> Revisa tu correo para confirmar tu dirección. Te escribiremos cuando abran las ventas.",
+msg_err:"Algo salió mal. Inténtalo de nuevo en un momento.",
+msg_inv:"Indica tu nombre, un correo válido y tu país, y marca la casilla de consentimiento.",
+po_tree:"&#127795; Cada copia vendida planta un árbol nativo.",
+ft_nav:"El Juego",ft_inf:"Información",ft_tree:"&#127807; Cada copia planta un árbol nativo",
+sticky_note:"Precio de lanzamiento &euro;15 &middot; Sin pago hoy",
+q4a:"Anunciaremos la fecha de envío a todos los que reservaron, y recibirás el seguimiento por correo. Quienes están en la lista de reservas son los primeros.",
+q9a:"El juego está disponible en inglés. Hay traducciones previstas al portugués, español y otros idiomas.",
+q12a:"No. La reserva guarda tu copia al precio de lanzamiento sin ningún pago. Cuando abran las ventas, te enviaremos un enlace de pago seguro. Puedes cancelar en cualquier momento antes."
+});
+
+Object.assign(T.pt,{"q7q":"O que são os créditos PES?","q7a":"PES significa Pagamento por Serviços de Ecossistema: um mecanismo real em que os proprietários são compensados pelos benefícios ambientais que a sua terra oferece, como armazenamento de carbono, filtragem de água ou biodiversidade. No jogo, os créditos PES são a sua pontuação: quanto mais resiliente e valiosa ecologicamente for a sua quinta, mais créditos ganha.","q8q":"O que vem na caixa?","q8a":"60 cartas, com 52 desenhos únicos, de três tipos: 18 Módulos de Quinta (a sua quinta e produção; 8 deles vêm em pares), 20 Inovações (ferramentas e estratégias) e 14 Desafios (secas, pragas, recessões). Inclui ainda um livro de regras ilustrado e uma caixa. Cada carta tem ciência real, texto com humor e ilustrações bonitas.","q9q":"Está disponível noutras línguas?","q12q":"Pago alguma coisa agora ao reservar?"});
+Object.assign(T.es,{"q7q":"¿Qué son los créditos PES?","q7a":"PES significa Pago por Servicios Ecosistémicos: un mecanismo real en el que los propietarios reciben una compensación por los beneficios ambientales de su tierra, como el almacenamiento de carbono, la filtración de agua o la biodiversidad. En el juego, los créditos PES son tu puntuación: cuanto más resiliente y valiosa ecológicamente sea tu granja, más créditos ganas.","q8q":"¿Qué incluye la caja?","q8a":"60 cartas, con 52 diseños únicos, de tres tipos: 18 Módulos de Granja (tu granja y producción; 8 de ellos vienen en pares), 20 Innovaciones (herramientas y estrategias) y 14 Desafíos (sequías, plagas, recesiones). Además, un reglamento ilustrado y una caja. Cada carta incluye ciencia real, textos con humor e ilustraciones preciosas.","q9q":"¿Está disponible en otros idiomas?","q12q":"¿Pago algo ahora al reservar?"});
+
+Object.assign(T.en,{msg_soon:"Reservations open soon. The form will be switched on in the next few days."});
+Object.assign(T.pt,{msg_soon:"As reservas abrem em breve. O formulário será ativado nos próximos dias."});
+Object.assign(T.es,{msg_soon:"Las reservas abren pronto. El formulario se activará en los próximos días."});
+
+// ── Site settings: fill these in to switch the features on ──
+const WAITLIST_ENDPOINT = '';   // email-list signup URL (Brevo / MailerLite form endpoint)
+const PRIVACY_URL = '';         // privacy policy page
+const CONTACT_EMAIL = '';       // e.g. hello@thefuturefarmercardgame.com
+
 let CL='en';
 function L(l){
   CL=l;
@@ -1153,57 +1277,27 @@ function L(l){
   const t=T[l];
   document.querySelectorAll('[data-k]').forEach(el=>{
     const k=el.dataset.k;
-    if(t[k]!==undefined) el.innerHTML=t[k];
+    if(el._orig===undefined) el._orig=el.innerHTML;
+    el.innerHTML=t[k]!==undefined?t[k]:el._orig;
   });
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent.trim().toLowerCase()===l));
-}
-L('en');
-
-function TF(btn){
-  const a=btn.closest('.faq-item').querySelector('.faq-a');
-  const arr=btn.querySelector('.faq-arr');
-  const op=a.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(e=>e.classList.remove('open'));
-  document.querySelectorAll('.faq-arr').forEach(e=>e.classList.remove('open'));
-  if(!op){a.classList.add('open');if(arr)arr.classList.add('open');}
-}
-
-function FS(){
-  const n=document.getElementById('fn').value.trim(),e=document.getElementById('fe').value.trim();
-  if(!n||!e||!e.includes('@')){
-    alert(CL==='pt'?'Por favor, preencha nome e e-mail v\u00e1lidos.':CL==='es'?'Por favor, introduce un nombre y correo v\u00e1lidos.':'Please enter your name and a valid email.');
-    return;
-  }
-  document.getElementById('the-form').style.display='none';
-  const s=document.getElementById('fs');
-  s.style.display='block';
-  s.querySelector('h3').innerHTML=T[CL].ok_t;
-  s.querySelector('p').innerHTML=T[CL].ok_b;
-}
-
-window.addEventListener('scroll',()=>{
-  let c='';
-  document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});
-  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c?'var(--cream)':''});
-},{passive:true});
-
-let CL='en';
-function L(l){
-  CL=l;
-  document.documentElement.lang=l;
-  const t=T[l];
-  document.querySelectorAll('[data-k]').forEach(el=>{
-    const k=el.dataset.k;
-    if(t[k]!==undefined) el.innerHTML=t[k];
-  });
-  // placeholder handling
   document.querySelectorAll('[data-k-ph]').forEach(el=>{
     const k=el.dataset.kPh;
     if(t[k]) el.placeholder=t[k];
   });
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent.trim().toLowerCase()===l));
+  updateSummary();
+  wireLinks();
+  if(!WAITLIST_ENDPOINT) showMsg('ok','msg_soon');
 }
-L('en');
+
+function wireLinks(){
+  document.querySelectorAll('[data-privacy]').forEach(a=>{
+    if(PRIVACY_URL){a.href=PRIVACY_URL;a.target='_blank';a.rel='noopener'}
+  });
+  document.querySelectorAll('[data-contact]').forEach(a=>{
+    if(CONTACT_EMAIL) a.href='mailto:'+CONTACT_EMAIL; else a.style.display='none';
+  });
+}
 
 function TF(btn){
   const a=btn.closest('.faq-item').querySelector('.faq-a');
@@ -1214,112 +1308,63 @@ function TF(btn){
   if(!op){a.classList.add('open');if(arr)arr.classList.add('open');}
 }
 
-// Hero form
-function HFS(){
-  const e=document.getElementById('h-email').value.trim();
-  if(!e||!e.includes('@')){
-    document.getElementById('h-email').focus();
-    return;
+// ── Pre-order: tier + quantity summary ──
+const TIERS={deck:{price:15,k:'t1_nm'},duo:{price:27,k:'t2_nm'},school:{price:99,k:'t3_nm'}};
+let currentTier='deck', currentQty=1;
+document.querySelectorAll('input[name=tier]').forEach(r=>r.addEventListener('change',e=>{currentTier=e.target.value;updateSummary()}));
+function changeQty(d){currentQty=Math.max(1,Math.min(50,currentQty+d));updateSummary()}
+function updateSummary(){
+  const t=TIERS[currentTier];
+  document.getElementById('sum-name').innerHTML=T[CL][t.k];
+  document.getElementById('sum-qty').textContent=currentQty;
+  document.getElementById('sum-unit').textContent='€'+t.price;
+  document.getElementById('sum-total').textContent='€'+(t.price*currentQty);
+}
+
+// ── Pre-order: submit to the email list ──
+const poForm=document.getElementById('po-form'), poMsg=document.getElementById('po-msg');
+function showMsg(kind,key){poMsg.className='po-msg '+kind;poMsg.innerHTML=T[CL][key]}
+if(!WAITLIST_ENDPOINT) poForm.querySelectorAll('input,select,button').forEach(el=>el.disabled=true);
+poForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const name=poForm.name.value.trim(), email=poForm.email.value.trim(), country=poForm.country.value;
+  if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||!country||!document.getElementById('po-consent').checked){showMsg('err','msg_inv');return}
+  const data={name,email,country,tier:currentTier,quantity:currentQty,language:CL};
+  const btn=poForm.querySelector('button[type=submit]');
+  btn.disabled=true;
+  try{
+    if(!WAITLIST_ENDPOINT) throw new Error('waitlist endpoint not configured');
+    await sendReservation(data);
+    poForm.querySelectorAll('.fm-input,.po-consent,button[type=submit]').forEach(el=>el.style.display='none');
+    showMsg('ok','msg_ok');
+  }catch(err){
+    console.error(err);
+    showMsg('err','msg_err');
+    btn.disabled=false;
   }
-  document.getElementById('hero-form').style.display='none';
-  document.getElementById('hero-success').style.display='block';
-  // TODO: POST to your backend/Mailchimp/Brevo
+});
+async function sendReservation(data){
+  // Field names are mapped to the email provider once it is chosen.
+  const body=new URLSearchParams(data);
+  await fetch(WAITLIST_ENDPOINT,{method:'POST',mode:'no-cors',body});
 }
 
-// Pre-order form
-function POFS(){
-  const n=document.getElementById('po-fn').value.trim(),e=document.getElementById('po-fe').value.trim();
-  if(!n||!e||!e.includes('@')){
-    alert(CL==='pt'?'Por favor, preencha nome e e-mail válidos.':CL==='es'?'Por favor, introduce nombre y correo válidos.':'Please enter your name and a valid email.');
-    return;
-  }
-  document.getElementById('po-form').style.display='none';
-  const s=document.getElementById('po-success');
-  s.style.display='block';
-  s.querySelector('h3').innerHTML=T[CL].ok_t;
-  // TODO: POST to your backend
-}
+// Hide the sticky mobile bar while the pre-order section is on screen
+const preorderSection=document.getElementById('preorder'), stickyCta=document.getElementById('sticky-cta');
+new IntersectionObserver(es=>es.forEach(e=>stickyCta.classList.toggle('hide',e.isIntersecting)),{threshold:0.1}).observe(preorderSection);
 
-// Sticky CTA form
-function SFS(){
-  const e=document.getElementById('s-email').value.trim();
-  if(!e||!e.includes('@')){
-    document.getElementById('s-email').focus();
-    return;
-  }
-  document.getElementById('sticky-cta').innerHTML='<div style="text-align:center;font-family:var(--fh);font-weight:900;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fl);padding:.5rem">&#127807; '+(T[CL].ok_t||"You're on the list!")+'</div>';
-  // TODO: POST to backend
-}
+// Close the mobile menu after picking a section
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
 
-// Share helpers
-const PAGE_URL = 'https://thefuturefarmer.com';
-const SHARE_TEXT = 'Just backed The Future Farmer Card Game on Kickstarter — a strategic card game about resilient farming. Check it out:';
-function shareTw(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(SHARE_TEXT)+'&url='+encodeURIComponent(PAGE_URL),'_blank')}
-function shareWa(){window.open('https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+PAGE_URL),'_blank')}
-function copyLink(){
-  navigator.clipboard.writeText(PAGE_URL).then(()=>{
-    document.querySelectorAll('.cp-lbl').forEach(el=>el.textContent='Copied!');
-    setTimeout(()=>document.querySelectorAll('.cp-lbl').forEach(el=>el.textContent='\u{1F517} Copy link'),1800);
-  });
-}
-
-// Hide sticky CTA when pre-order form is visible
-const preorderSection = document.getElementById('preorder');
-const stickyCta = document.getElementById('sticky-cta');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{stickyCta.style.display=e.isIntersecting?'none':'flex'});
-},{threshold:0.1});
-if(preorderSection&&stickyCta) observer.observe(preorderSection);
-
-// Nav scroll highlight
+// Highlight the current section in the nav
 window.addEventListener('scroll',()=>{
   let c='';
   document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});
-  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c?'var(--cream)':''});
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c?'var(--fg)':''});
 },{passive:true});
 
-
-function openModal(){document.getElementById('cost-modal').classList.add('open');document.body.style.overflow='hidden'}
-function closeModal(){document.getElementById('cost-modal').classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-
+L('en');
 </script>
 
-<!-- COST BREAKDOWN MODAL -->
-<div class="modal-overlay" id="cost-modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-hd">
-      <h3 data-k="modal_title">Where Your Money Goes</h3>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p class="modal-intro" data-k="modal_intro">Every &euro;15 you spend on The Future Farmer Card Game is split transparently across three areas. Here&rsquo;s exactly how it breaks down.</p>
-      <div class="cost-bars">
-        <div class="cost-item">
-          <div class="cost-label-row">
-            <span class="cost-name" data-k="cost1_name">Production</span>
-            <span class="cost-pct c1">60% <span class="cost-euro">(&euro;9.00)</span></span>
-          </div>
-          <div class="cost-bar-track"><div class="cost-bar-fill c1"></div></div>
-          <div class="cost-desc" data-k="cost1_desc">Card printing, packaging, quality control, and shipping to fulfilment centres. This is the largest cost and ensures a premium physical product.</div>
-        </div>
-        <div class="cost-item">
-          <div class="cost-label-row">
-            <span class="cost-name" data-k="cost2_name">Maintenance</span>
-            <span class="cost-pct c2">30% <span class="cost-euro">(&euro;4.50)</span></span>
-          </div>
-          <div class="cost-bar-track"><div class="cost-bar-fill c2"></div></div>
-          <div class="cost-desc" data-k="cost2_desc">Domain hosting, barcode registration, e-commerce platform fees, payment processing, and funding new game versions and translations.</div>
-        </div>
-        <div class="cost-item">
-          <div class="cost-label-row">
-            <span class="cost-name" data-k="cost3_name">Native Tree Planting</span>
-            <span class="cost-pct c3">10% <span class="cost-euro">(&euro;1.50)</span></span>
-          </div>
-          <div class="cost-bar-track"><div class="cost-bar-fill c3"></div></div>
-          <div class="cost-desc" data-k="cost3_desc">Funds native tree planting through verified ecological restoration programmes. Every copy sold plants a tree. No greenwashing, no offset schemes.</div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <p data-k="modal_footer">We believe in full transparency. If you have questions about our cost structure, <a href="/cdn-cgi/l/email-protection#640c0108080b24100c010211101116010205160901164a070b09" style="color:var(--fg)">get in touch</a>.<
+</body>
+</html>
