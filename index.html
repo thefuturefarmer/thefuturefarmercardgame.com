@@ -1266,7 +1266,7 @@ Object.assign(T.pt,{msg_soon:"As reservas abrem em breve. O formulário será at
 Object.assign(T.es,{msg_soon:"Las reservas abren pronto. El formulario se activará en los próximos días."});
 
 // ── Site settings: fill these in to switch the features on ──
-const WAITLIST_ENDPOINT = '';   // email-list signup URL (Brevo / MailerLite form endpoint)
+const WAITLIST_ENDPOINT = 'https://2faee729.sibforms.com/serve/MUIFAN0-fVVRfBCgzZHo6GvG7RCIRojyIR3LDAoSl7eekeXhPmDim5ktZ2lVcVCtegDHcyQ_HApGFG100Pz3-rIRmL_2VbF7mIhIRBRJqWxK2mveLWYKKDdX99yWfc6FKdknCNPZ0ymkQuGVkG5Ecg0fkXpYlHJi0C3h8487X0znLaOsli0CgsaeBLa93o5w1m5y-LU7w1sGcAx0sA==';   // Brevo form "Website pre-order waitlist" (list #4, double opt-in)
 const PRIVACY_URL = '';         // privacy policy page
 const CONTACT_EMAIL = '';       // e.g. hello@thefuturefarmercardgame.com
 
@@ -1344,9 +1344,13 @@ poForm.addEventListener('submit',async e=>{
   }
 });
 async function sendReservation(data){
-  // Field names are mapped to the email provider once it is chosen.
-  const body=new URLSearchParams(data);
-  await fetch(WAITLIST_ENDPOINT,{method:'POST',mode:'no-cors',body});
+  // Brevo form field names; email_address_check is its spam trap and stays empty
+  const body=new URLSearchParams({
+    EMAIL:data.email, NAME:data.name, COUNTRY:data.country, TIER:data.tier,
+    QUANTITY:String(data.quantity), LANGUAGE:data.language, OPT_IN:'1',
+    email_address_check:'', locale:data.language
+  });
+  await fetch(WAITLIST_ENDPOINT+'?isAjax=1',{method:'POST',mode:'no-cors',body});
 }
 
 // Hide the sticky mobile bar while the pre-order section is on screen
